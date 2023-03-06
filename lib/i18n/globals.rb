@@ -107,12 +107,16 @@ module I18n
 
   class << self
     def translate(*args)
+    # def translate(key = nil, throw: false, raise: false, locale: nil, **options)
       # If last argument is a hash, interpolation will be run. If not, it will
       # not even attempt to interpolate something and our custom
       # `missing_interpolation_argument_handler` will not be run at all. That's
       # why we pass in a fake hash so that it always runs interpolation.
       args << FAKE_INTERPOLATION_HASH unless args.last.is_a?(Hash)
-      super(*args)
+
+      # Ruby 3 compatible, use double splat for last argument
+      options = args.pop
+      super(*args, **options)
     end
 
     alias t translate
