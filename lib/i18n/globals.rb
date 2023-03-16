@@ -18,7 +18,10 @@ module I18n
       else
         args << config.globals
       end
-      super(*args)
+      
+      # Ruby 3 compatible, use double splat for last argument
+      options = args.pop
+      super(*args, **options)
     end
 
     alias :t :translate
