@@ -38,20 +38,20 @@ Your global variables will then be automatically interpolated into every transla
 
 ```ruby
 # If the value of 'greeting' is 'Welcome to %{company}!'
-I18n.t 'greeting' # => 'Welcome to Initech!'
+I18n.t 'greeting' # Returns 'Welcome to Initech!'
 ```
 
 You can override the globals:
 
 ```ruby
-I18n.t 'greeting', company: 'Initrode' # => 'Welcome to Initrode!'
+I18n.t 'greeting', company: 'Initrode' # Returns 'Welcome to Initrode!'
 ```
 
 It's also possible to mix globals and ordinary variables:
 
 ```ruby
-# The translation of 'signature' is '%{president}, President of %{company}'
-I18n.t 'signature', president: 'Bill Lumbergh' # => 'Bill Lumbergh, President of Initech'
+# If the value of 'signature' is '%{president}, President of %{company}'
+I18n.t 'signature', president: 'Bill Lumbergh' # Returns 'Bill Lumbergh, President of Initech'
 ```
 
 If you're using Rails, it can be useful to specify your globals in a `before_action`:
@@ -72,16 +72,9 @@ end
 
 Now you can interpolate the `company` variable into every translation in your template:
 
-```html+erb
+```html_ruby
 <%= t 'greeting' %>
 <%= t 'signature', president: 'Bill Lumbergh' %>
-```
-
-And this would produce:
-
-```html
-Welcome to Initech!
-Bill Lumbergh, President of Initech
 ```
 
 ## Contributing

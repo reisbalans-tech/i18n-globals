@@ -1,4 +1,3 @@
-require 'i18n'
 require 'i18n/globals/version'
 
 module I18n
